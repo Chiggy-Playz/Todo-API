@@ -9,11 +9,15 @@
 # https://github.com/docker/awesome-compose
 services:
   server:
+    container_name: todocrud
     build:
       context: .
-    ports:
-      - 8000:8000
+    networks:
+      - genesis_network
 
+networks:
+  genesis_network:
+    external: true
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the
