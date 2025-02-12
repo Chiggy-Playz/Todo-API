@@ -12,7 +12,7 @@ from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(servers=[{"url": "https://todocrud.chiggydoes.tech", "description": "Production Environment"}])
 
 # API key header configuration
 API_KEY_HEADER = APIKeyHeader(name="X-API-Key")
@@ -61,6 +61,7 @@ def get_db():
 class TaskStatus(Enum):
     pending = "pending"
     completed = "completed"
+
 
 # Models
 class UserCreate(BaseModel):
