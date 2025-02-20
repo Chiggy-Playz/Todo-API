@@ -7,6 +7,7 @@ from typing import List, Literal, Optional
 import uuid
 
 from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
@@ -16,6 +17,14 @@ app = FastAPI(servers=[{"url": "https://todocrud.chiggydoes.tech", "description"
 
 # API key header configuration
 API_KEY_HEADER = APIKeyHeader(name="X-API-Key")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Database setup
